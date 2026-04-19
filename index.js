@@ -114,3 +114,93 @@ function gameObject() {
         },
     };
 }
+
+function numPointsScored(playerName){
+    const allPlayers = Object.assign({}, gameObject().home.players, gameObject().away.players)
+    
+    for(const key in allPlayers){
+        if(key === playerName){
+            return allPlayers[key].points
+        }
+    }
+
+    return "Player not found"
+}
+
+function shoeSize(playerName){
+    const allPlayers = Object.assign({}, gameObject().home.players, gameObject().away.players)
+    
+    for(const key in allPlayers){
+        if(key === playerName){
+            return allPlayers[key].shoe
+        }    
+    }
+
+    return "Player not found"
+}
+
+function teamColors(teamName){
+    if("Brooklyn Nets" === teamName){
+        return gameObject().home.colors
+    } else if("Charlotte Hornets" === teamName){
+        return gameObject().away.colors
+    } else {
+        return "Team name not found!"
+    }
+}
+
+function teamNames(){
+    return [gameObject().home.teamName, gameObject().away.teamName]
+}
+
+function playerNumbers(teamName){
+    const playerNumbers = []
+
+    if("Brooklyn Nets" === teamName){
+        for(const key in gameObject().home.players){
+            playerNumbers.push(gameObject().home.players[key].number)
+        }
+    } else if("Charlotte Hornets" === teamName){
+        for(const key in gameObject().away.players){
+            playerNumbers.push(gameObject().away.players[key].number)
+        }
+    } else {
+        return "Invalid team name"
+    }
+
+    return playerNumbers
+}
+
+function playerStats(playerName){
+    const allPlayers = Object.assign({}, gameObject().home.players, gameObject().away.players)
+    
+    for(const key in allPlayers){
+        if(key === playerName){
+            return allPlayers[key]
+        }    
+    }
+
+    return "Player not found"
+}
+
+function bigShoeRebounds(){
+    const allPlayers = Object.assign({}, gameObject().home.players, gameObject().away.players)
+    let shoeSize = 0
+    let bigShoePlayer
+    for(const key in allPlayers){
+        if(allPlayers[key].shoe > shoeSize){
+            shoeSize = allPlayers[key].shoe
+            bigShoePlayer =allPlayers[key]
+        }
+    }
+
+    return bigShoePlayer.rebounds
+}
+
+numPointsScored("Brendan Hayword")
+// console.log(shoeSize("Brendan Hayword"))
+// console.log(teamColors("Charlotte Hornets"))
+// console.log(teamNames())
+// console.log(playerNumbers("Charlotte Hornets"))
+// console.log(playerStats("Brendan Hayword"))
+console.log(bigShoeRebounds())
